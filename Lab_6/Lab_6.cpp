@@ -116,18 +116,16 @@ int main() {
     std::cout << "Секретне число успішно згенеровано між " << MIN_NUMBER << " та " << MAX_NUMBER << ".\n";
 
     int current_guess = 0;
-    /*
+
     //DEBUG: Виводимо загадане число
     std::cout << "[DEBUG] Загадане число: " << secret_number << "\n";
-    */
+
     GuessNumberCoro game = guess_number_coroutine(secret_number, current_guess);
 
     int attempt_count = 0;
     int result = 1;
 
     std::cout << "--- Протокол гри ---\n";
-
-    game.next();
 
     while (result != 0) {
         attempt_count++;
@@ -162,6 +160,7 @@ int main() {
         if (game.is_done()) {
             break;
         }
+        game.next();
     }
 
     std::cout << "--- Кінець гри ---\n";
